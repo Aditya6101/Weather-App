@@ -1,0 +1,44 @@
+@media (min-width: 600px) {
+  header {
+    padding: 0 10%;
+  }
+
+  main {
+    padding: 8% 10%;
+    #form {
+      width: 80%;
+      #input {
+        font-size: 1.3rem;
+        padding: 0.5em 1em;
+      }
+    }
+    .weather {
+      width: 70%;
+      margin: 1rem auto;
+      flex-direction: row;
+      justify-content: space-between;
+    }
+  }
+
+  section {
+    padding: 10%;
+  }
+
+  .weather-card {
+    .card-cols {
+      flex-direction: row;
+      justify-content: space-between;
+      grid-row: 2/3;
+      .col-1 {
+        flex: 1;
+        justify-content: flex-start;
+        .weather-img {
+          margin-right: 3rem;
+        }
+      }
+      .col-2 {
+        flex: 1;
+      }
+    }
+  }
+}

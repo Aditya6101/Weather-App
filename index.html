@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather App by Ad6101</title>
+    <link rel="stylesheet" href="./css/style.css" />
+    <script src="./js/app.js" defer></script>
+  </head>
+  <body>
+    <div class="main-container">
+      <header>
+        <div class="logo-container">
+          <a href="#"><img src="./Images/logo.svg" alt="logo" /></a>
+        </div>
+        <nav>
+          <ul class="nav-links">
+            <li class="nav-link"><a href="#">Home</a></li>
+            <li class="nav-link"><a href="#">Map</a></li>
+          </ul>
+        </nav>
+      </header>
+      <main>
+        <form id="form">
+          <input
+            type="text"
+            id="input"
+            placeholder="Search by Name, Zip Code, etc."
+          />
+        </form>
+        <div class="weather">
+          <img class="weather-img" src="./Images/coludy.svg" alt="cloudy" />
+          <div class="weather-info">
+            <h1><span id="temperature">24</span>°C</h1>
+            <h3 class="weather-desc">Cloudy</h3>
+          </div>
+        </div>
+      </main>
+    </div>
+    <section>
+      <div class="weather-card">
+        <button id="theme-btn">
+          <img src="./Images/theme.svg" alt="theme-btn" />
+        </button>
+        <div class="weather-card-header">
+          <h3>Current Weather</h3>
+          <h4>
+            <time id="time">10:30 <span id="am-pm"></span>AM,</time> Washington
+          </h4>
+        </div>
+        <div class="card-cols">
+          <div class="col-1">
+            <img class="weather-img" src="./Images/coludy.svg" alt="cloudy" />
+            <div class="card-weather-desc">
+              <h1><span id="temperature">24</span>°C</h1>
+              <h3 class="weather-desc">Cloudy</h3>
+            </div>
+          </div>
+          <div class="col-2">
+            <div class="info">
+              <h3>Humidity</h3>
+              <h4>50%</h4>
+            </div>
+            <div class="info">
+              <h3>Wind</h3>
+              <h4>20 km/h</h4>
+            </div>
+            <div class="info">
+              <h3>Pressure</h3>
+              <h4>123 pha</h4>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>

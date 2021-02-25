@@ -1,0 +1,25 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  width: 100vw;
+  background-color: #eee;
+  font-size: 100%;
+  font-family: 'Open Sans', sans-serif;
+  overflow-x: hidden;
+}
+
+.weather,
+.col-1 {
+  h1 {
+    font-weight: $bold;
+  }
+  .weather-desc {
+    font-weight: $semi-bold;
+  }
+}

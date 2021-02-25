@@ -1,0 +1,31 @@
+// ? SCSS Variables of colors
+
+$primary-color: #e83a00;
+$light-bg-color: #272727;
+$light-card-bg: #fff;
+$dark-bg-color: #eee;
+$dark-card-bg: #272727;
+$white: #fff;
+$black: #000;
+// ? Setting root variables according to light theme
+
+:root {
+  --primary-color: #{$primary-color};
+  --secondary-color: #{$black};
+  --bg-color: #{$light-bg-color};
+  --card-bg: #{$light-card-bg};
+}
+
+// ? Setting root variables according to dark theme
+
+body.dark {
+  --secondary-color: #{$white};
+  --bg-color: #{$dark-bg-color};
+  --card-bg: #{$dark-card-bg};
+}
+
+$regular: 400;
+$semi-bold: 600;
+$bold: 700;
+
+$border-radius: 3px;
