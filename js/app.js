@@ -43,11 +43,11 @@ function validateSearchTerm(value) {
     const regexForZipCode = new RegExp(expForZipCode);
 
     if (value.match(regexForZipCode) && !value.match(regexForCity)) {
-      const weatherURL = `http://api.openweathermap.org/data/2.5/weather?zip=${value},${countryCode}&appid=${API_KEY}`;
+      const weatherURL = `https://api.openweathermap.org/data/2.5/weather?zip=${value},${countryCode}&appid=${API_KEY}`;
 
       getWeatherData(weatherURL);
     } else if (value.match(regexForCity) && !value.match(regexForZipCode)) {
-      const weatherURL = `http://api.openweathermap.org/data/2.5/weather?q=${value}&appid=${API_KEY}`;
+      const weatherURL = `https://api.openweathermap.org/data/2.5/weather?q=${value}&appid=${API_KEY}`;
 
       getWeatherData(weatherURL);
     }
@@ -62,7 +62,7 @@ function getWeatherDataOnLoad() {
       const lat = +position.coords.latitude;
       const lon = +position.coords.longitude;
 
-      const weatherURL = `http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}`;
+      const weatherURL = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}`;
 
       getWeatherData(weatherURL);
     });
@@ -97,7 +97,7 @@ async function getWeatherData(URL) {
       city,
       country
     );
-    const airQualityURL = `http://api.openweathermap.org/data/2.5/air_pollution?lat=${lat}&lon=${lon}&appid=${API_KEY}`;
+    const airQualityURL = `https://api.openweathermap.org/data/2.5/air_pollution?lat=${lat}&lon=${lon}&appid=${API_KEY}`;
 
     // ? Calling function to get Air Quality Data
 
