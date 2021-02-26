@@ -50,6 +50,39 @@ body {
   outline: none;
 }
 
+.social-icons {
+  position: absolute;
+  bottom: 5%;
+  left: 50%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+}
+
+.social-icons a {
+  margin: 0 0.7rem;
+  color: #fff;
+  font-size: 1.5rem;
+  -webkit-transition: color 250ms ease-in;
+  transition: color 250ms ease-in;
+  -webkit-transition: -webkit-transform 300ms ease-out;
+  transition: -webkit-transform 300ms ease-out;
+  transition: transform 300ms ease-out;
+  transition: transform 300ms ease-out, -webkit-transform 300ms ease-out;
+  text-decoration: none;
+}
+
+.social-icons a:hover {
+  -webkit-transform: scale(1.5) rotateZ(360deg);
+          transform: scale(1.5) rotateZ(360deg);
+  color: var(--primary-color);
+}
+
 .card {
   max-width: 60vw;
   margin: auto;
@@ -247,6 +280,7 @@ header .nav-links .nav-link a {
   background-image: url("../Images/bg.jpg");
   background-position: center center;
   background-size: cover;
+  position: relative;
 }
 
 main {

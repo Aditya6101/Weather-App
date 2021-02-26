@@ -35,6 +35,28 @@ body {
   outline: none;
 }
 
+.social-icons {
+  position: absolute;
+  bottom: 5%;
+  left: 50%;
+  display: flex;
+  align-items: center;
+  transform: translateX(-50%);
+  a {
+    margin: 0 0.7rem;
+    color: #fff;
+    font-size: 1.5rem;
+    transition: color 250ms ease-in;
+    transition: transform 300ms ease-out;
+    text-decoration: none;
+    &:hover {
+      transform: scale(1.5) rotateZ(360deg);
+      // transform: ;
+      color: var(--primary-color);
+    }
+  }
+}
+
 .card {
   max-width: 60vw;
   margin: auto;
@@ -121,18 +143,21 @@ body {
     }
   }
 }
+
 .min-max-temp {
   margin: 0.3rem 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
+
 .card-weather-desc {
   .min-max-temp {
     flex-direction: column;
     align-items: flex-start;
   }
 }
+
 .air-quality-card {
   margin-top: 2rem;
 }
