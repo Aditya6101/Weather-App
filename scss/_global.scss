@@ -121,7 +121,18 @@ body {
     }
   }
 }
-
+.min-max-temp {
+  margin: 0.3rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.card-weather-desc {
+  .min-max-temp {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
 .air-quality-card {
   margin-top: 2rem;
 }

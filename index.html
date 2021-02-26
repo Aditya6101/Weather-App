@@ -5,6 +5,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Weather App by Ad6101</title>
+    <link rel="shortcut icon" href="./Images/favicon.svg" type="image/x-icon" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"
+    />
     <link rel="stylesheet" href="./css/style.css" />
     <script src="./js/app.js" defer></script>
   </head>
@@ -26,14 +31,21 @@
           <input
             type="text"
             id="input"
-            placeholder="Search by Name, Zip Code, etc."
+            placeholder="Search by City Name or Zip Code..."
           />
+          <button type="submit" id="search-btn">
+            <i class="fas fa-search"></i>
+          </button>
         </form>
         <div class="weather">
           <img class="weather-img" src="./Images/coludy.svg" alt="cloudy" />
           <div class="weather-info">
             <h1><span class="temperature"></span>°C</h1>
             <h3 class="weather-desc"></h3>
+            <div class="min-max-temp">
+              <h5>Min- <span class="temp-min">20</span><span>°C</span></h5>
+              <h5>Max- <span class="temp-max">40</span><span>°C</span></h5>
+            </div>
           </div>
         </div>
       </main>
@@ -53,6 +65,10 @@
             <div class="card-weather-desc">
               <h1><span class="temperature"></span>°C</h1>
               <h3 class="weather-desc"></h3>
+              <div class="min-max-temp">
+                <h5>Min- <span class="temp-min">20</span><span>°C</span></h5>
+                <h5>Max- <span class="temp-max">40</span><span>°C</span></h5>
+              </div>
             </div>
           </div>
           <div class="col-2">
@@ -78,8 +94,8 @@
         </div>
         <div class="card-cols">
           <div class="col-1">
-            <h1 id="aqi">1</h1>
-            <h3 id="aqi-desc">Good</h3>
+            <h1 id="aqi"></h1>
+            <h3 id="aqi-desc"></h3>
           </div>
           <div class="col-2">
             <div class="info">
