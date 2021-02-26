@@ -48,6 +48,7 @@ body {
   cursor: pointer;
   border: none;
   outline: none;
+  z-index: 1;
 }
 
 .social-icons {
@@ -84,7 +85,6 @@ body {
 }
 
 .card {
-  max-width: 60vw;
   margin: auto;
   position: relative;
   background-color: var(--card-bg);
@@ -116,7 +116,6 @@ body {
   margin-bottom: 0.2em;
   font-size: 1.9rem;
   line-height: 1.3em;
-  white-space: nowrap;
   font-weight: 700;
   color: var(--secondary-color);
 }
@@ -426,6 +425,9 @@ section {
   }
   section {
     padding: 10%;
+  }
+  section .card {
+    max-width: 70vw;
   }
   .weather-card .card-cols {
     -webkit-box-orient: horizontal;

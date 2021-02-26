@@ -22,6 +22,9 @@
 
   section {
     padding: 10%;
+    .card {
+      max-width: 70vw;
+    }
   }
 
   .weather-card {
