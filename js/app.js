@@ -151,8 +151,8 @@ function showWeatherData(
   descEl.forEach((el) => (el.innerText = desc));
   cityEl.forEach((el) => (el.innerHTML = city));
   countryEl.forEach((el) => (el.innerHTML = country));
-  tempMinEl.forEach((el) => (el.innerText = tempMinInC));
-  tempMaxEl.forEach((el) => (el.innerText = tempMaxInC));
+  tempMinEl.forEach((el) => (el.innerText = Math.floor(tempMinInC)));
+  tempMaxEl.forEach((el) => (el.innerText = Math.floor(tempMaxInC)));
   humidityEl.innerText = humidity;
   windSpeedEl.innerText = speed;
   pressureEl.innerText = pressure;
