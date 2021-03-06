@@ -11,7 +11,6 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"
     />
     <link rel="stylesheet" href="./css/style.css" />
-    <script src="./js/app.js" defer></script>
   </head>
   <body>
     <div class="main-container">
@@ -38,7 +37,8 @@
           </button>
         </form>
         <div class="weather">
-          <img class="weather-img" src="./Images/coludy.svg" alt="cloudy" />
+          <!-- <img class="weather-img" src="./Images/coludy.svg" alt="cloudy" /> -->
+          <canvas class="weather-icon" width="128" height="128"></canvas>
           <div class="weather-info">
             <h1><span class="temperature"></span>°C</h1>
             <h3 class="weather-desc"></h3>
@@ -69,7 +69,7 @@
         </div>
         <div class="card-cols">
           <div class="col-1">
-            <img class="weather-img" src="./Images/coludy.svg" alt="cloudy" />
+            <!-- <canvas class="weather-icon" width="128" height="128"></canvas> -->
             <div class="card-weather-desc">
               <h1><span class="temperature"></span>°C</h1>
               <h3 class="weather-desc"></h3>
@@ -134,4 +134,7 @@
       document.body.classList.toggle('dark');
     });
   </script>
+  <!-- <script src="./js/skycons.js"></script> -->
+  <script src="./js/config.js"></script>
+  <script src="./js/app.js"></script>
 </html>
