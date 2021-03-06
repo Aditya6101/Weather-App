@@ -1,5 +1,5 @@
 //  ! API KEY
-const API_KEY = '15abe8b87abbb3ba3fafdc7ee0dd5e8b';
+const API_KEY = config.API_KEY;
 
 let countryCode = '';
 
@@ -81,8 +81,8 @@ async function getWeatherData(URL) {
     const { speed } = data.wind;
     const { name: city } = data;
     const { country } = data.sys;
-
     countryCode = country;
+    // setWeatherIcon(document.querySelectorAll('weather-icon'), desc);
 
     // ? Calling function to display fetched Weather Data to the DOM Elements
 
@@ -103,7 +103,7 @@ async function getWeatherData(URL) {
 
     getAirQuality(airQualityURL);
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 }
 
@@ -118,7 +118,7 @@ async function getAirQuality(URL) {
 
     showAirQuality(aqi, co, no, o3, pm2_5);
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 }
 
@@ -193,3 +193,13 @@ function showAirQuality(aqi, co, no, o3, pm2_5) {
   aqiEl.style.color = `${color}`;
   aqiDescEl.style.color = `${color}`;
 }
+
+// const setWeatherIcon = (iconId, icon) => {
+//   console.log(icon);
+//   const skycons = new Skycons({ color: '#e83a00' });
+//   const weatherIcon = icon.replace(/ /g, '_').toUpperCase();
+//   console.log(weatherIcon);
+//   // skycons.set(iconId, Skycons.weatherIcon);
+//   skycons.set(iconId, Skycons.PARTLY_CLOUDY_NIGHT);
+//   skycons.play();
+// };
