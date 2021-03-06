@@ -1,5 +1,5 @@
 //  ! API KEY
-const API_KEY = config.API_KEY;
+const API_KEY = '15abe8b87abbb3ba3fafdc7ee0dd5e8b';
 
 let countryCode = '';
 
