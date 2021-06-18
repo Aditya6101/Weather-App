@@ -55,6 +55,7 @@ main {
       font-family: inherit;
       font-size: 1rem;
       border-radius: $border-radius;
+      text-transform: capitalize;
     }
     #search-btn {
       height: 100%;
@@ -73,8 +74,8 @@ main {
     flex-direction: column;
     align-items: center;
     #weather-img {
-      height: 2rem;
-      width: 2rem;
+      height: 120px;
+      width: 120px;
     }
     h1 {
       color: #fff;
