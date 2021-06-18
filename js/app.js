@@ -1,40 +1,42 @@
 //  ! API KEY
-const API_KEY = '15abe8b87abbb3ba3fafdc7ee0dd5e8b';
+const API_KEY = "15abe8b87abbb3ba3fafdc7ee0dd5e8b";
 
-let countryCode = '';
+let countryCode = "";
 
 // ? Getting DOM Elements
 
-const form = document.getElementById('form');
-const input = document.getElementById('input');
-const searchBtn = document.getElementById('search-btn');
+const form = document.getElementById("form");
+const input = document.getElementById("input");
+const searchBtn = document.getElementById("search-btn");
+
 // ? Calling Function to load weather data on page load
 
-window.addEventListener('load', () => getWeatherDataOnLoad());
+window.addEventListener("load", () => getWeatherDataOnLoad());
 
 // ? Listening for submit event on the form
 
-form.addEventListener('submit', (e) => {
+form.addEventListener("submit", (e) => {
   e.preventDefault();
   const searchTerm = input.value;
   validateSearchTerm(searchTerm);
   form.reset();
 });
 
-searchBtn.addEventListener('submit', () => {
+searchBtn.addEventListener("submit", () => {
   return true;
 });
 
 // * Validating User Input and getting weather data according to matched format
 
 function validateSearchTerm(value) {
-  if (value === '') {
-    alert('😒😒😒Please Enter Valid Term😒😒😒');
+  if (value === "") {
+    alert("😒😒😒Please Enter Valid Term😒😒😒");
     return false;
   } else {
     // ? Regex for City Name
 
-    const expForCityName = /^([a-zA-Z\u0080-\u024F]+(?:. |-| |'))*[a-zA-Z\u0080-\u024F]*$/;
+    const expForCityName =
+      /^([a-zA-Z\u0080-\u024F]+(?:. |-| |'))*[a-zA-Z\u0080-\u024F]*$/;
     const regexForCity = new RegExp(expForCityName);
 
     // ? Regex For Zip Code
@@ -47,6 +49,7 @@ function validateSearchTerm(value) {
 
       getWeatherData(weatherURL);
     } else if (value.match(regexForCity) && !value.match(regexForZipCode)) {
+      value.toUpperCase();
       const weatherURL = `https://api.openweathermap.org/data/2.5/weather?q=${value}&appid=${API_KEY}`;
 
       getWeatherData(weatherURL);
@@ -57,7 +60,7 @@ function validateSearchTerm(value) {
 // * Function to load weather data on page load
 
 function getWeatherDataOnLoad() {
-  if ('geolocation' in navigator) {
+  if ("geolocation" in navigator) {
     navigator.geolocation.getCurrentPosition((position) => {
       const lat = +position.coords.latitude;
       const lon = +position.coords.longitude;
@@ -77,26 +80,28 @@ async function getWeatherData(URL) {
     const data = await res.json();
     const { lat, lon } = data.coord;
     const { temp, pressure, humidity, temp_min, temp_max } = data.main;
+    const { icon } = data.weather[0];
     const { description: desc } = data.weather[0];
     const { speed } = data.wind;
     const { name: city } = data;
     const { country } = data.sys;
     countryCode = country;
-    // setWeatherIcon(document.querySelectorAll('weather-icon'), desc);
+    const weatherDataObj = {
+      temperature: temp,
+      description: desc,
+      icon,
+      humidity: humidity,
+      minimum_temp: temp_min,
+      maximum_temp: temp_max,
+      wind_speed: speed,
+      pressure: pressure,
+      city: city,
+      country: country,
+    };
 
     // ? Calling function to display fetched Weather Data to the DOM Elements
 
-    showWeatherData(
-      temp,
-      desc,
-      humidity,
-      temp_min,
-      temp_max,
-      speed,
-      pressure,
-      city,
-      country
-    );
+    showWeatherData(weatherDataObj);
     const airQualityURL = `https://api.openweathermap.org/data/2.5/air_pollution?lat=${lat}&lon=${lon}&appid=${API_KEY}`;
 
     // ? Calling function to get Air Quality Data
@@ -116,7 +121,15 @@ async function getAirQuality(URL) {
 
     // ? Calling function to display fetched Air Quality Data the DOM Elements
 
-    showAirQuality(aqi, co, no, o3, pm2_5);
+    const aqiDataObj = {
+      aqi: aqi,
+      co: co,
+      no: no,
+      o3: o3,
+      pm2_5: pm2_5,
+    };
+
+    showAirQuality(aqiDataObj);
   } catch (error) {
     console.error(error);
   }
@@ -124,82 +137,74 @@ async function getAirQuality(URL) {
 
 // * Function to Display Weather Data
 
-function showWeatherData(
-  temp,
-  desc,
+function showWeatherData({
+  temperature,
+  description,
+  icon,
   humidity,
-  temp_min,
-  temp_max,
-  speed,
+  minimum_temp,
+  maximum_temp,
+  wind_speed,
   pressure,
   city,
-  country
-) {
-  const temperatureEl = document.querySelectorAll('.temperature');
-  const descEl = document.querySelectorAll('.weather-desc');
-  const humidityEl = document.getElementById('humidity');
-  const windSpeedEl = document.getElementById('wind-speed');
-  const pressureEl = document.getElementById('pressure');
-  const cityEl = document.querySelectorAll('.city');
-  const countryEl = document.querySelectorAll('.country');
-  const tempMinEl = document.querySelectorAll('.temp-min');
-  const tempMaxEl = document.querySelectorAll('.temp-max');
-  const tempInC = temp - 273.15;
-  const tempMinInC = temp_min - 273.15;
-  const tempMaxInC = temp_max - 273.15;
-  temperatureEl.forEach((el) => (el.innerText = Math.floor(tempInC)));
-  descEl.forEach((el) => (el.innerText = desc));
-  cityEl.forEach((el) => (el.innerHTML = city));
-  countryEl.forEach((el) => (el.innerHTML = country));
-  tempMinEl.forEach((el) => (el.innerText = Math.floor(tempMinInC)));
-  tempMaxEl.forEach((el) => (el.innerText = Math.floor(tempMaxInC)));
-  humidityEl.innerText = humidity;
-  windSpeedEl.innerText = speed;
-  pressureEl.innerText = pressure;
+  country,
+}) {
+  const tempInC = temperature - 273.15;
+  const tempMinInC = maximum_temp - 273.15;
+  const tempMaxInC = minimum_temp - 273.15;
+  document.querySelector(
+    "#weather-img"
+  ).src = `http://openweathermap.org/img/w/${icon}.png`;
+  document
+    .querySelectorAll(".temperature")
+    .forEach((el) => (el.innerText = Math.floor(tempInC)));
+  document
+    .querySelectorAll(".weather-desc")
+    .forEach((el) => (el.innerText = description));
+  document.getElementById("humidity").innerText = humidity;
+  document.getElementById("wind-speed").innerText = wind_speed;
+  document.getElementById("pressure").innerText = pressure;
+  document.querySelectorAll(".city").forEach((el) => (el.innerHTML = city));
+  document
+    .querySelectorAll(".country")
+    .forEach((el) => (el.innerHTML = country));
+  document
+    .querySelectorAll(".temp-min")
+    .forEach((el) => (el.innerText = Math.floor(tempMinInC)));
+  document
+    .querySelectorAll(".temp-max")
+    .forEach((el) => (el.innerText = Math.floor(tempMaxInC)));
 }
 
 // * Function to Display Air Quality Data
 
-function showAirQuality(aqi, co, no, o3, pm2_5) {
-  const aqiEl = document.getElementById('aqi');
-  const aqiDescEl = document.getElementById('aqi-desc');
-  const coEl = document.getElementById('co');
-  const noEl = document.getElementById('no');
-  const ozoneEl = document.getElementById('ozone');
-  const fpmEl = document.getElementById('fpm');
-  aqiEl.innerText = aqi;
-  coEl.innerText = co;
-  noEl.innerText = no;
-  ozoneEl.innerText = o3;
-  fpmEl.innerText = pm2_5;
+function showAirQuality({ aqi, co, no, o3, pm2_5 }) {
+  document.getElementById("co").innerText = co;
+  document.getElementById("no").innerText = no;
+  document.getElementById("ozone").innerText = o3;
+  document.getElementById("fpm").innerText = pm2_5;
 
-  let color = '';
+  const aqiEl = document.getElementById("aqi");
+  const aqiDescEl = document.getElementById("aqi-desc");
+
+  let color = "";
   if (aqi === 5) {
-    color = 'red';
-    aqiDescEl.innerText = 'Very Poor';
+    color = "red";
+    aqiDescEl.innerText = "Very Poor";
   } else if (aqi === 4) {
-    color = 'orange';
-    aqiDescEl.innerText = 'Poor';
+    color = "orange";
+    aqiDescEl.innerText = "Poor";
   } else if (aqi === 3) {
-    color = 'yellow';
-    aqiDescEl.innerText = 'Moderate';
+    color = "yellow";
+    aqiDescEl.innerText = "Moderate";
   } else if (aqi === 2) {
-    color = '#2b8000';
-    aqiDescEl.innerText = 'Fair';
+    color = "steelblue";
+    aqiDescEl.innerText = "Fair";
   } else {
-    color = 'green';
-    aqiDescEl.innerText = 'Good';
+    color = "green";
+    aqiDescEl.innerText = "Good";
   }
+  aqiEl.innerText = aqi;
   aqiEl.style.color = `${color}`;
   aqiDescEl.style.color = `${color}`;
 }
-
-// const setWeatherIcon = (iconId, icon) => {
-//   console.log(icon);
-//   const skycons = new Skycons({ color: '#e83a00' });
-//   const weatherIcon = icon.replace(/ /g, '_').toUpperCase();
-//   console.log(weatherIcon);
-//   // skycons.set(iconId, Skycons.weatherIcon);
-//   skycons.set(iconId, Skycons.PARTLY_CLOUDY_NIGHT);
-//   skycons.play();
-// };

@@ -1,6 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap');
-@import './variables';
-@import './global';
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap");
+@import "./variables";
+@import "./global";
 
 header {
   display: flex;
@@ -25,7 +25,7 @@ header {
 }
 
 .main-container {
-  background-image: url('../Images/bg.jpg');
+  background-image: url("../Images/bg.jpg");
   background-position: center center;
   background-size: cover;
   position: relative;
@@ -72,6 +72,10 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;
+    #weather-img {
+      height: 2rem;
+      width: 2rem;
+    }
     h1 {
       color: #fff;
       font-size: 4rem;
@@ -122,4 +126,4 @@ section {
   }
 }
 
-@import './media-queries';
+@import "./media-queries";
